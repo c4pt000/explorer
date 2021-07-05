@@ -9,6 +9,7 @@ html
     link(rel='stylesheet', href='//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css')
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/styling.css')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
     script(src='//stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js')
     script(src='/vendor/jqplot/jquery.jqplot.min.js')
@@ -100,7 +101,6 @@ html
       - return time
     -  };
     - var navbarClasses = ['nav','navbar','navbar-expand-lg','fixed-top'];
-    - var footerClasses = ['nav','navbar','navbar-default','fixed-bottom','d-none','d-md-flex','d-flex','footer'];
     if settings.display.navbar_dark == true
       - navbarClasses.push('bg-dark');
       - navbarClasses.push('navbar-dark');
@@ -115,138 +115,19 @@ html
       else
         - navbarClasses.push('bg-primary');
         - navbarClasses.push('navbar-dark');
-        - footerClasses.push('bg-primary');
-        - footerClasses.push('navbar-dark');
-    div(class=navbarClasses, role='navigation')
-      .navbar-header
-        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbar-collapse')
-          span.navbar-toggler-icon 
-        a.navbar-brand(href='/')
-          if typeof settings.headerlogo !== "undefined" && settings.headerlogo && settings.headerlogo.length > 1
-            img(src=settings.headerlogo, style='width:153px;height:45px;')
-          else
-            =settings.title
-      .collapse.navbar-collapse(id='navbar-collapse')
-        ul.navbar-nav.mr-auto
-          li#home
-            a.nav-link(href='/')
-              span.fa.fa-search
-              span.menu-text #{settings.locale.menu_explorer}
-          if settings.heavy == true
-            li#reward
-              a.nav-link(href='/reward')
-                span.fa.fa-star
-                span.menu-text #{settings.locale.menu_reward}
-          if settings.display.movement == true
-            li#movement
-              a.nav-link.loading(href='/movement')
-                span.fa.fa-money
-                span.menu-text #{settings.locale.menu_movement}
-          if settings.display.network == true
-            li#network
-              a.nav-link(href='/network')
-                span.fa.fa-share-alt
-                span.menu-text #{settings.locale.menu_network}
-          if settings.display.richlist == true
-            li#richlist
-              a.nav-link(href='/richlist')
-                span.fa.fa-btc
-                span.menu-text #{settings.locale.menu_richlist}
-          if settings.display.markets == true
-            li#markets
-              a.nav-link.loading(href='/markets/'+settings.markets.default)
-                span.fa.fa-line-chart
-                span.menu-text #{settings.locale.menu_markets}
-          if settings.display.api == true
-            li#info
-              a.nav-link(href='/info')
-                span.fa.fa-info-circle
-                span.menu-text #{settings.locale.menu_api}
+    body
+    <a href="/" class="btn btn-default btn-lg btn-gh">
+    <img src="/images/logo.png" style="height:42px;" class="fa fa-github"></a>
     .col-md-12
-      .row.text-center.d-flex.justify-content-center
-        .col-md-2
-          .card.card-default.d-none.d-md-block.d-block
-            .card-header
-              if settings.nethash_units == 'K'
-                strong #{settings.locale.network} (KH/s)
-              else if settings.nethash_units == 'M'
-                strong #{settings.locale.network} (MH/s)
-              else if settings.nethash_units == 'G'
-                strong #{settings.locale.network} (GH/s)
-              else if settings.nethash_units == 'T'
-                strong #{settings.locale.network} (TH/s)
-              else if settings.nethash_units == 'P'
-                strong #{settings.locale.network} (PH/s)
-              else if settings.nethash_units == 'H'
-                strong #{settings.locale.network} (H/s)
-            .card-body
-              #hashratecard
-                span.header-icons.fa.fa-gears
-                if settings.index.difficulty == 'Hybrid'
-                  label#hashrate -
-                  <br>
-                  label#lblX1
-                else
-                  label#hashrate -
-        .col-md-2
-          .card.card-default.d-none.d-md-block.d-block
-            .card-header
-              strong #{settings.locale.difficulty}
-            .card-body
-              #difficultycard
-                span.header-icons.fa.fa-sliders
-                if settings.index.difficulty == 'Hybrid'
-                  label#difficulty -
-                  <br>
-                  label#difficultyHybrid -
-                else
-                  label#difficulty -
-        
-        .col-md-2.col-sm-12
-            img(src=settings.logo, style='margin-top:-15px;height:128px;')
-        .col-md-2
-          .card.card-default.d-none.d-md-block.d-block
-            .card-header
-              strong #{settings.locale.ex_supply} (#{settings.symbol})
-            .card-body
-              #supplycard
-                span.header-icons.fa.fa-pie-chart
-                if settings.index.difficulty == 'Hybrid'
-                  label#supply -
-                  <br>
-                  label#lblX1
-                else
-                  label#supply -
-                if settings.index.show_market_cap == true && settings.index.show_market_cap_over_price != true  
-                  <br>  
-                  label ( 
-                  label#marketCap - 
-                  label )
-        .col-md-2
-          .card.card-default.d-none.d-md-block.d-block
-            if settings.index.show_market_cap != true || settings.index.show_market_cap_over_price != true
-              .card-header
-                strong #{settings.markets.exchange} Price
-              .card-body
-                #pricecard
-                  span.header-icons.fa.fa-rocket
-                  if settings.index.difficulty == 'Hybrid'
-                    label#lastPrice -
-                    <br>
-                    label#lblX1
-                  else
-                    label#lastPrice -
-          if settings.index.show_market_cap == true && settings.index.show_market_cap_over_price == true
-            .card-header
-              strong Market Cap
-            .card-body
-              label#marketCap -
-
-      .row.text-center(style='margin-top:10px;margin-bottom:20px;')
+      #blockcypher-bannermod  	
+       h2 Browse the block chain
+      .bg-primary-gradient.page-header(style='margin-top:10px;margin-bottom:20px;')
         form.form-inline.col-12.d-flex.justify-content-center(method='post', action='/search')
           #index-search.form-group.d-flex.justify-content-center
             input.form-control(type='text', name='search', placeholder=settings.locale.ex_search_message, style='min-width:80%;margin-right:5px;')
             button.btn.btn-success(type='submit') #{settings.locale.ex_search_button}
+      .container
+      .row
     block content
     div(class=footerClasses, role='navigation')
       .col-md-4.navbar-nav
@@ -272,8 +153,16 @@ html
         ul.nav.justify-content-center
           li.text-center(style='margin-left:80px;margin-right:80px;')
             p(style='')
-              a.nav-link.poweredby(href='https://github.com/iquidus/explorer', target='_blank') Powered by Iquidus Explorer v#{settings.iquidus_version}
       .col-md-4.navbar-nav
         ui.nav.justify-content-end
-          label#lblBlockcount.badge.badge-pill.nav-link
-          label#lblConnections.badge.badge-pill.nav-link
+
+      <a href="https://github.com/c4pt000/explorer" class="btn btn-default btn-lg btn-gh">
+      <i class="fa fa-github"></i>Read more about what makes this block explorer different</a>
+
+
+      .col-sm-4
+      p.text-right
+                | Powered by
+                a(href='/') Radiocoin Web Services
+                br
+                | © 2021 Radiocoin
