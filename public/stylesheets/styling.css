@@ -186,7 +186,7 @@ body {
   padding:20px 0;
 }
 .page-header {
-  padding:115px 0;
+  padding:50px 0;
   font-size:1.2em;
   color: #fff;
   background: #371456 url(../img/chain.svg) left center no-repeat;
@@ -305,6 +305,10 @@ body {
   background: #444;
   border-color:#444;
   color:#fff;
+width:400px;
+height:60px;
+position:relative;
+left:15px;
 }
 .btn-gh:hover {
   background: #555;

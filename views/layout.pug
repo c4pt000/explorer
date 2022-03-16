@@ -2,6 +2,7 @@ doctype html
 html
   head
     title= settings.title
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=0')
     link(rel='stylesheet', href='/themes/' + settings.theme + '/bootstrap.min.css')
     link(rel='stylesheet', href='/vendor/jqplot/jquery.jqplot.css')
     link(rel='stylesheet', href='/vendor/flags-css/css/flag-icon.min.css')
@@ -117,7 +118,9 @@ html
         - navbarClasses.push('navbar-dark');
     body
     <a href="/" class="btn btn-default btn-lg btn-gh">
-    <img src="/images/logo.png" style="height:42px;" class="fa fa-github"></a>
+    <img src="/images/logo.png" style="height:42px;" class="fa "></a>
+<br>
+<br>
     .col-md-12
       #blockcypher-bannermod  	
        h2 Browse the block chain
@@ -155,14 +158,22 @@ html
             p(style='')
       .col-md-4.navbar-nav
         ui.nav.justify-content-end
-
+      <div>
       <a href="https://github.com/c4pt000/explorer" class="btn btn-default btn-lg btn-gh">
-      <i class="fa fa-github"></i>Read more about what makes this block explorer different</a>
-
-
+      <i class="fa "></i>Read more about what makes this block explorer different</a>
+      </div>
+      <br>
+      <br>
+      <br>  
+      <br>
+      <div>
+      <a href="https://github.com/c4pt000/electrum-radiocoin" class="btn btn-default btn-lg btn-gh">
+      <i class="fa "></i> Download electrum-radiocoin-wallet</a>
+      </div>
+      <br>
+      <div>
+      <a href="https://github.com/c4pt000/electrum-dogecoin" class="btn btn-default btn-lg btn-gh">
+      <i class="fa "></i> go here for a dogecoin-electrum prototype </a>
+      </div>      
       .col-sm-4
       p.text-right
-                | Powered by
-                a(href='/') Radiocoin Web Services
-                br
-                | © 2021 Radiocoin
