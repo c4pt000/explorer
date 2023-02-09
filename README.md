@@ -50,6 +50,16 @@ Create user with read/write access:
 
 ### Start Explorer
 
+    mkdir /opt/explorer/tmp
+    add to crontab -e
+    ```
+    @reboot cd /opt/explorer && node --stack-size=10000 bin/instance
+    */1 * * * * cd /opt/explorer && /usr/bin/nodejs scripts/sync.js index update > /dev/null 2>&1
+    */2 * * * * cd /opt/explorer && /usr/bin/nodejs scripts/sync.js market > /dev/null 2>&1
+    */5 * * * * cd /opt/explorer && /usr/bin/nodejs scripts/peers.js > /dev/null 2>&1
+    ```
+    
+
     npm start
 
 *Note: mongod must be running to start the explorer*
